@@ -2,6 +2,7 @@ package MeetingRoomDesgin;
 
 import MeetingRoomDesgin.MeetingRoomFactory.BookMeetingBasedOnAvailabilty;
 import MeetingRoomDesgin.MeetingRoomFactory.MeetingRoomFactory;
+import MeetingRoomDesgin.MeetingRooms.MeetingRooms;
 import MeetingRoomDesgin.MeetingsNotifier.AttendeesSubscribers.AttendeesSubscriber;
 import MeetingRoomDesgin.MeetingsNotifier.AttendeesSubscribers.EmailNotifier;
 import MeetingRoomDesgin.MeetingsNotifier.Publisher.BookedMeetingsAttendeesPublisher;
@@ -34,9 +35,7 @@ public class ClientCode {
         allAttendees.add(attendee3);
 
         MeetingRoomFactory bookMeeting  = new BookMeetingBasedOnAvailabilty();
-        bookMeeting.checkAvailabiltyAndBookMeetingRoom(date,time,iD,allAttendees);
-
-
-
+        MeetingRooms bookmeeting = bookMeeting.getMeetingRoomInstance(allAttendees);
+        bookmeeting.bookMeetingRoom( date,  time,  iD, allAttendees);
     }
 }

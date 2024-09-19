@@ -13,14 +13,14 @@ public class BookMeetingBasedOnAvailabilty implements MeetingRoomFactory{
 
     MeetingRooms himalayanRoom = new HimalayaMeetingRoom();
     MeetingRooms vindhyaRoom =  new VindhayaMeetingRoom();
+
     @Override
-    public String checkAvailabiltyAndBookMeetingRoom(String date, String time, Integer bookerID, List<AttendeesSubscriber> attendees) {
+    public MeetingRooms getMeetingRoomInstance(List<AttendeesSubscriber> attendees) {
         if(!himalayanRoom.isBooked() && attendees.size() <= himalayanRoom.returnCapacity()){
-            himalayanRoom.bookMeetingRoom(date, time, bookerID, attendees);
-            return ("Himalaya Meeting Room Booked");
+            return new HimalayaMeetingRoom();
         }else if(!vindhyaRoom.isBooked() && attendees.size() <= himalayanRoom.returnCapacity()){
-            vindhyaRoom.bookMeetingRoom(date, time, bookerID, attendees);
-            return ("Vindhaya Meeting Room Booked");
-        }else return "Sorry Meeting Room Not Available";
-    };
+            return new VindhayaMeetingRoom();
+        }
+        return null;
+    }
 }
